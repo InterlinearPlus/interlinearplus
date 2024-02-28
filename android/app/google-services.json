@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "40470999039",
+    "project_id": "interlinearplus-f2233",
+    "storage_bucket": "interlinearplus-f2233.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:40470999039:android:317b8bffded77a5b5881ca",
+        "android_client_info": {
+          "package_name": "com.example.interlinearplus"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDELmQeoR-Kf393nlG0Y05W2iUyfarFSyw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
