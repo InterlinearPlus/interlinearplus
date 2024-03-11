@@ -2,6 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:interlinearplus/read_data/get_username.dart';
+import 'package:interlinearplus/pages/csv_import_page.dart';
+import 'package:interlinearplus/pages/reader_page.dart';
+
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -71,6 +74,24 @@ class _HomePageState extends State<HomePage> {
                 },
               ),
             ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => CsvImportPage()),
+                );
+              },
+              child: Text('CSV Import'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ReaderPage()),
+                );
+              },
+              child: Text('Greek John Reader'),
+            ),       
           ],
         )
       ),

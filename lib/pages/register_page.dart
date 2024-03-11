@@ -31,11 +31,12 @@ class _RegisterPageState extends State<RegisterPage> {
 
   Future signUp() async {
     if (passwordConfirmed()) {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: _emailController.text.trim(),
         password: _passwordController.text.trim(),
       );
       addUserDetails(
+        userCredential.user!.uid,
         _emailController.text.trim(),
         _usernameController.text.trim(),
         _bookmarkController.text.trim()
@@ -43,8 +44,8 @@ class _RegisterPageState extends State<RegisterPage> {
     }
   }
 
-  Future addUserDetails(String email, String username, String bookmark) async {
-    await FirebaseFirestore.instance.collection('users').add({
+  Future addUserDetails(String uid, String email, String username, String bookmark) async {
+    await FirebaseFirestore.instance.collection('users').doc(uid).set({
       'email': email,
       'username': username,
       'bookmark': bookmark,

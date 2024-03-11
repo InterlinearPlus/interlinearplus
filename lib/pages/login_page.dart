@@ -8,15 +8,14 @@ class LoginPage extends StatefulWidget {
   final VoidCallback showRegisterPage;
   const LoginPage({Key? key, required this.showRegisterPage}) : super(key: key);
 
-@override
-State<LoginPage> createState() => _LoginPageState();
+  @override
+  State<LoginPage> createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
- 
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
- 
+
   Future signIn() async {
     await FirebaseAuth.instance.signInWithEmailAndPassword(
       email: _emailController.text.trim(),
@@ -30,7 +29,6 @@ class _LoginPageState extends State<LoginPage> {
     _passwordController.dispose();
     super.dispose();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -46,15 +44,15 @@ class _LoginPageState extends State<LoginPage> {
                   'Lewis Method Alpha',
                   style: GoogleFonts.bebasNeue(
                     fontSize: 52,
-                  )
-                  ),              
+                  ),
+                ),
                 SizedBox(height: 10),
                 Text(
                   'Please Login',
                   style: GoogleFonts.bebasNeue(
                     fontSize: 28,
-                  )
                   ),
+                ),
                 SizedBox(height: 50),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25),
@@ -62,7 +60,7 @@ class _LoginPageState extends State<LoginPage> {
                     decoration: BoxDecoration(
                       color: Colors.grey[200],
                       border: Border.all(color: Colors.white),
-                      borderRadius: BorderRadius.circular(12)
+                      borderRadius: BorderRadius.circular(12),
                     ),
                     child: Padding(
                       padding: const EdgeInsets.only(left: 20.0),
@@ -83,13 +81,14 @@ class _LoginPageState extends State<LoginPage> {
                     decoration: BoxDecoration(
                       color: Colors.grey[200],
                       border: Border.all(color: Colors.white),
-                      borderRadius: BorderRadius.circular(12)
+                      borderRadius: BorderRadius.circular(12),
                     ),
                     child: Padding(
                       padding: const EdgeInsets.only(left: 20.0),
                       child: TextField(
                         controller: _passwordController,
                         obscureText: true,
+                        onSubmitted: (_) => signIn(),
                         decoration: InputDecoration(
                           border: InputBorder.none,
                           hintText: 'Password',
@@ -118,9 +117,10 @@ class _LoginPageState extends State<LoginPage> {
                         child: Text(
                           'Forgot password?',
                           style: TextStyle(
-                              color: Colors.blue,
-                              fontWeight: FontWeight.bold),
+                            color: Colors.blue,
+                            fontWeight: FontWeight.bold,
                           ),
+                        ),
                       ),
                     ],
                   ),
@@ -135,7 +135,7 @@ class _LoginPageState extends State<LoginPage> {
                       decoration: BoxDecoration(
                         color: Colors.teal,
                         borderRadius: BorderRadius.circular(12),
-                        ),
+                      ),
                       child: Center(
                         child: Text(
                           'Sign In',
@@ -143,9 +143,9 @@ class _LoginPageState extends State<LoginPage> {
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
                             fontSize: 20,
-                            ),
-                          )
+                          ),
                         ),
+                      ),
                     ),
                   ),
                 ),
@@ -153,27 +153,29 @@ class _LoginPageState extends State<LoginPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                      Text(
-                        'Not a member?',
+                    Text(
+                      'Not a member?',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: widget.showRegisterPage,
+                      child: Text(
+                        ' Register now',
                         style: TextStyle(
-                          fontWeight: FontWeight.bold),
+                          color: Colors.blue,
+                          fontWeight: FontWeight.bold,
                         ),
-                      GestureDetector(
-                        onTap: widget.showRegisterPage,
-                        child: Text(
-                          ' Register now',
-                          style: TextStyle(
-                            color: Colors.blue,
-                            fontWeight: FontWeight.bold),
-                          ),
-                      )
+                      ),
+                    ),
                   ],
-                )
+                ),
               ],
             ),
           ),
         ),
-      )
+      ),
     );
   }
 }
