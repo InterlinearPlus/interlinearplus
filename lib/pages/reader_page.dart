@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:interlinearplus/pages/reader_settings.dart';
 
 class ReaderPage extends StatefulWidget {
   @override
@@ -14,7 +15,7 @@ class _ReaderPageState extends State<ReaderPage> {
   final FocusNode _focusNode = FocusNode();
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final User? _currentUser = FirebaseAuth.instance.currentUser;
-  final String _collectionName = 'GreekJohn'; // Replace with your collection name
+  final String _collectionName = 'GreekJohn';
 
   @override
   void dispose() {
@@ -61,10 +62,39 @@ class _ReaderPageState extends State<ReaderPage> {
     }
   }
 
+  Color? _getHighlightColor(Map<String, dynamic> data, List<String> highlightSettings) {
+    for (final setting in highlightSettings) {
+      final parts = setting.split('=');
+      if (parts.length == 2) {
+        final string = parts[0].trim();
+        final color = parts[1].trim();
+
+        if (data.values.any((value) => value.toString().contains(string))) {
+          return Color(int.parse(color, radix: 16)).withOpacity(0.5);
+        }
+      }
+    }
+
+    return null;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Greek John Reader')),
+      appBar: AppBar(
+        title: Text('Greek John Reader'),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.settings),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ReaderSettingsPage()),
+              );
+            },
+          ),
+        ],
+      ),
       body: StreamBuilder<QuerySnapshot>(
         stream: _firestore.collection(_collectionName).orderBy('abspos').snapshots(),
         builder: (context, snapshot) {
@@ -111,6 +141,9 @@ class _ReaderPageState extends State<ReaderPage> {
                         final hiddenList = List<int>.from(userData?['hidden$_collectionName'] ?? []);
                         final isHidden = hiddenList.contains(data['abspos']);
 
+                        final highlightSettings = List<String>.from(userData?['highlightSettings'] ?? []);
+                        final highlightColor = _getHighlightColor(data, highlightSettings);
+
                         return IntrinsicWidth(
                           child: GestureDetector(
                             onDoubleTap: () {
@@ -121,15 +154,18 @@ class _ReaderPageState extends State<ReaderPage> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
                                 children: [
-                                  if (!isHidden)
-                                    Text(
-                                      showReference ? '${data['book']} ${data['chapter']}:${data['verse']}' : '',
-                                      style: TextStyle(fontFamily: 'Greek'),
-                                      textAlign: TextAlign.center,
-                                    ),
+                                  Text(
+                                    showReference ? '${data['book']} ${data['chapter']}:${data['verse']}' : '',
+                                    style: TextStyle(fontFamily: 'Greek'),
+                                    textAlign: TextAlign.center,
+                                  ),
                                   Text(
                                     data['display'],
-                                    style: TextStyle(fontFamily: 'Greek', fontSize: 18),
+                                    style: TextStyle(
+                                      fontFamily: 'Greek',
+                                      fontSize: 18,
+                                      backgroundColor: highlightColor,
+                                    ),
                                     textAlign: TextAlign.center,
                                   ),
                                   if (!isHidden) ...[
