@@ -88,35 +88,35 @@ class _ReaderPageState extends State<ReaderPage> {
                           children: [
                             Text(
                               showReference ? '${data['book']} ${data['chapter']}:${data['verse']}' : '',
-                              style: TextStyle(fontFamily: 'Hebrew',),
+                              style: TextStyle(fontFamily: 'Greek',),
                             ),
                             Text(
                               data['display'],
-                              style: TextStyle(fontFamily: 'Hebrew', fontSize: 18,),
+                              style: TextStyle(fontFamily: 'Greek', fontSize: 18,),
                             ),
-                            Text(data['lemma'], style: TextStyle(fontFamily: 'Hebrew',)),
-                            Text(data['parsing'], style: TextStyle(fontFamily: 'Hebrew',)),
-                            Text(data['gloss'], style: TextStyle(fontFamily: 'Hebrew',)),
+                            Text(data['lemma'], style: TextStyle(fontFamily: 'Greek',)),
+                            Text(data['parsing'], style: TextStyle(fontFamily: 'Greek',)),
+                            Text(data['gloss'], style: TextStyle(fontFamily: 'Greek',)),
                             if (data['parse1'] != null && data['parse1'].isNotEmpty)
-                              Text(data['parse1'], style: TextStyle(fontFamily: 'Hebrew',)),
+                              Text(data['parse1'], style: TextStyle(fontFamily: 'Greek',)),
                             if (data['parse2'] != null && data['parse2'].isNotEmpty)
-                              Text(data['parse2'], style: TextStyle(fontFamily: 'Hebrew',)),
+                              Text(data['parse2'], style: TextStyle(fontFamily: 'Greek',)),
                             if (data['parse3'] != null && data['parse3'].isNotEmpty)
-                              Text(data['parse3'], style: TextStyle(fontFamily: 'Hebrew',)),
+                              Text(data['parse3'], style: TextStyle(fontFamily: 'Greek',)),
                             if (data['parse4'] != null && data['parse4'].isNotEmpty)
-                              Text(data['parse4'], style: TextStyle(fontFamily: 'Hebrew',)),
+                              Text(data['parse4'], style: TextStyle(fontFamily: 'Greek',)),
                             if (data['parse5'] != null && data['parse5'].isNotEmpty)
-                              Text(data['parse5'], style: TextStyle(fontFamily: 'Hebrew',)),
+                              Text(data['parse5'], style: TextStyle(fontFamily: 'Greek',)),
                             if (data['parse6'] != null && data['parse6'].isNotEmpty)
-                              Text(data['parse6'], style: TextStyle(fontFamily: 'Hebrew',)),
+                              Text(data['parse6'], style: TextStyle(fontFamily: 'Greek',)),
                             if (data['parse7'] != null && data['parse7'].isNotEmpty)
-                              Text(data['parse7'], style: TextStyle(fontFamily: 'Hebrew',)),
+                              Text(data['parse7'], style: TextStyle(fontFamily: 'Greek',)),
                             if (data['parse8'] != null && data['parse8'].isNotEmpty)
-                              Text(data['parse8'], style: TextStyle(fontFamily: 'Hebrew',)),
+                              Text(data['parse8'], style: TextStyle(fontFamily: 'Greek',)),
                             if (data['parse9'] != null && data['parse9'].isNotEmpty)
-                              Text(data['parse9'], style: TextStyle(fontFamily: 'Hebrew',)),
+                              Text(data['parse9'], style: TextStyle(fontFamily: 'Greek',)),
                             if (data['parse10'] != null && data['parse10'].isNotEmpty)
-                              Text(data['parse10'], style: TextStyle(fontFamily: 'Hebrew',)),
+                              Text(data['parse10'], style: TextStyle(fontFamily: 'Greek',)),
                           ],
                         ),
                       ),

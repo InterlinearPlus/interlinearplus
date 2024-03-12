@@ -84,6 +84,9 @@ flutter:
      - family: Hebrew
        fonts:
          - asset: fonts/SBL_Hbrw.ttf
+     - family: Greek
+       fonts:
+         - asset: fonts/SBL_grk.ttf         
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro
